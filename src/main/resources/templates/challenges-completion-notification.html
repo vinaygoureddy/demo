@@ -1,0 +1,18 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "{{{actionUrl}}}";
+        form.appendChild(createInput("cres", "{{{cres}}}"));
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    });
+
+    function createInput(name, value) {
+        var result = document.createElement("input");
+        result.name = name;
+        result.value = value;
+        return result;
+    }
+</script>
