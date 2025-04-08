@@ -533,6 +533,69 @@
             letter-spacing: .2em;
         }
     </style>
+    <script>
+        function isUserEntryValid() {
+            return document.getElementById("challengeDataEntry").value !== "";
+        }
+
+        function createChallengeCancelInput() {
+            var result = document.createElement("input");
+            result.type = "hidden";
+            result.name = "challengeCancel";
+            result.value = "01";
+            return result;
+        }
+
+        function disableElements(elementList) {
+            for (var i = 0; i < elementList.length; i++) {
+                elementList[i].disabled = true;
+            }
+        }
+
+        function submitForm(action) {
+            console.log('ACS#submitForm entered, with action ', action);
+
+            if (action === 'dataEntered' && !isUserEntryValid()) {
+                showRequiredDialog();
+                return;
+            }
+
+            disableElements(document.getElementsByClassName("btn"));
+            document.getElementById("challengeDataEntry").readOnly = true;
+
+            if (document.getElementById("deviceBindingDataEntry") !== null) {
+                document.getElementById("deviceBindingDataEntry").readOnly = true;
+            }
+
+            showLoadingIndicator();
+
+            setTimeout(function () {
+                var form = document.getElementById("form");
+                document.getElementById("action").value = action;
+
+                if (action === "cancelled") {
+                    form.appendChild(createChallengeCancelInput());
+                }
+
+                form.submit();
+            }, 2000);
+        }
+
+        function showLoadingIndicator() {
+            var loaderOverlay = document.getElementById('loader-overlay');
+            loaderOverlay.style.display = 'block';
+        }
+
+        function showRequiredDialog() {
+            var dialog = document.getElementById('dialog-required-message');
+            dialog.style.display = 'block';
+        }
+
+        function hideRequiredDialog() {
+            var dialog = document.getElementById('dialog-required-message');
+            dialog.style.display = 'none';
+        }
+    </script>
 </head>
 
 <body class="screen-view-full-template">
@@ -602,68 +665,6 @@
     </div>
 </div>
 
-<script>
-    function isUserEntryValid() {
-        return document.getElementById("challengeDataEntry").value !== "";
-    }
 
-    function createChallengeCancelInput() {
-        var result = document.createElement("input");
-        result.type = "hidden";
-        result.name = "challengeCancel";
-        result.value = "01";
-        return result;
-    }
-
-    function disableElements(elementList) {
-        for (var i = 0; i < elementList.length; i++) {
-            elementList[i].disabled = true;
-        }
-    }
-
-    function submitForm(action) {
-        console.log('ACS#submitForm entered, with action ', action);
-
-        if (action === 'dataEntered' && !isUserEntryValid()) {
-            showRequiredDialog();
-            return;
-        }
-
-        disableElements(document.getElementsByClassName("btn"));
-        document.getElementById("challengeDataEntry").readOnly = true;
-
-        if (document.getElementById("deviceBindingDataEntry") !== null) {
-            document.getElementById("deviceBindingDataEntry").readOnly = true;
-        }
-
-        showLoadingIndicator();
-
-        setTimeout(function () {
-            var form = document.getElementById("form");
-            document.getElementById("action").value = action;
-
-            if (action === "cancelled") {
-                form.appendChild(createChallengeCancelInput());
-            }
-
-            form.submit();
-        }, 2000);
-    }
-
-    function showLoadingIndicator() {
-        var loaderOverlay = document.getElementById('loader-overlay');
-        loaderOverlay.style.display = 'block';
-    }
-
-    function showRequiredDialog() {
-        var dialog = document.getElementById('dialog-required-message');
-        dialog.style.display = 'block';
-    }
-
-    function hideRequiredDialog() {
-        var dialog = document.getElementById('dialog-required-message');
-        dialog.style.display = 'none';
-    }
-</script>
 </body>
 </html>
