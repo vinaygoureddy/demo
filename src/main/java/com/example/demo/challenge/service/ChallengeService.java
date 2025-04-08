@@ -62,7 +62,6 @@ public class ChallengeService {
                 .submitChallengeToUrl("/api/v1/browser_challenges")
                 .threeDSServerTransID(cReqRequest.getThreeDSServerTransID())
                 .build();
-
         return template.execute(challengeParameters);
     }
 }
