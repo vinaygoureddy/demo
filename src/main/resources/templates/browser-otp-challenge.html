@@ -665,5 +665,13 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const submitButton = document.getElementById('verify-challenge-btn');
+        if (submitButton) {
+            submitButton.onclick = submitForm;
+        }
+    });
+</script>
 </body>
 </html>
