@@ -14,16 +14,12 @@ public class FetchLoginService {
     @Autowired
     private RestTemplate restTemplate;
 
-    // Configure the URL of the other service's endpoint that returns the string
-    private final String externalServiceUrl = "https://intense-falls-74604-086831f5c8f8.herokuapp.com/api/login";
-
     public String fetchLogin() {
         try {
             // Make a GET request to the external service
-            ResponseEntity<String> response = restTemplate.exchange(
-                    externalServiceUrl,
-                    HttpMethod.GET,
-                    null, // No request body needed for a GET request
+            // Configure the URL of the other service's endpoint that returns the string
+            String externalServiceUrl = "https://intense-falls-74604-086831f5c8f8.herokuapp.com/api/login";
+            ResponseEntity<String> response = restTemplate.exchange(externalServiceUrl, HttpMethod.GET, null, // No request body needed for a GET request
                     String.class // Specify the expected response type as String
             );
 
@@ -32,13 +28,11 @@ public class FetchLoginService {
                 // Get the string from the response body
                 return response.getBody();
             } else {
-                // Handle unsuccessful responses (e.g., log an error, throw an exception)
                 log.error("Error fetching string. Status code: " + response.getStatusCode());
                 return null; // Or throw a custom exception
             }
         } catch (Exception e) {
-            // Handle exceptions that might occur during the request (e.g., network issues)
-            System.err.println("Exception while fetching string: " + e.getMessage());
+            log.error("Exception while fetching string: " + e.getMessage());
             return null; // Or throw a custom exception
         }
     }

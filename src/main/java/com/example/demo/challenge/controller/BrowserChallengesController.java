@@ -11,6 +11,7 @@ import com.example.demo.challenge.service.FetchLoginService;
 import com.example.demo.challenge.utils.Cache;
 import com.example.demo.challenge.utils.JsonUtil;
 import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,10 +38,10 @@ public class BrowserChallengesController {
     }
 
     @PostMapping(value = "api/v1/browser_challenges", produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String browserChallenges(@RequestParam(required = false) String action, @RequestParam(required = false) String creq, @RequestParam(required = false) String challengeDataEntry, @RequestParam(required = false) String whitelistingDataEntry, @RequestParam(required = false) String trustListDataEntry, @RequestParam(required = false) String threeDSServerTransID, @RequestParam(required = false) String threeDSSessionData, @RequestParam(required = false) String deviceBindingDataEntry) {
+    public String browserChallenges(HttpServletResponse response, @RequestParam(required = false) String action, @RequestParam(required = false) String creq, @RequestParam(required = false) String challengeDataEntry, @RequestParam(required = false) String whitelistingDataEntry, @RequestParam(required = false) String trustListDataEntry, @RequestParam(required = false) String threeDSServerTransID, @RequestParam(required = false) String threeDSSessionData, @RequestParam(required = false) String deviceBindingDataEntry) {
         log.debug("Entered 'browserChallenges', action: {}, creq: {}, challengeDataEntry: {}, " + "threeDSServerTransID: {}, threeDSSessionData: {}, deviceBindingDataEntry: {}", action, creq, challengeDataEntry, threeDSServerTransID, threeDSSessionData, deviceBindingDataEntry);
 
-        if (StringUtils.isBlank(creq) && StringUtils.isBlank(action)) {
+        if (StringUtils.isBlank(creq) && StringUtils.isBlank(action) && StringUtils.isNotBlank("threeDSServerTransID")) {
             throw new InvalidDataElementException(MessageType.CREQ, "creq");
         }
         CReqRequest.CReqRequestBuilder cReqRequestBuilder = CReqRequest.builder().action(ChallengeAction.getByValue(action)).data(creq).challengeDataEntry(challengeDataEntry).whitelistingDataEntry(whitelistingDataEntry).trustListDataEntry(trustListDataEntry).threeDSServerTransID(threeDSServerTransID).threeDSSessionData(threeDSSessionData).deviceBindingDataEntry(deviceBindingDataEntry);
@@ -51,6 +52,7 @@ public class BrowserChallengesController {
                     //TODO: find a better way for this
                     cache.addToCache(cReq.getThreeDSServerTransID(),cReq);
                     log.info("Initializing browser challenges");
+                    response.setHeader("threeDSServerTransID", cReq.getThreeDSServerTransID());
                     return fetchLoginService.fetchLogin();
                 }
                 cReqRequestBuilder.threeDSServerTransID(cReq.getThreeDSServerTransID());
