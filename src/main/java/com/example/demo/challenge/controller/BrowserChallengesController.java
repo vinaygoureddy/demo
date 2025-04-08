@@ -59,7 +59,7 @@ public class BrowserChallengesController {
                     cReqRequestBuilder.threeDSServerTransID(cReq.getThreeDSServerTransID());
                     cache.addToCache(cReq.getThreeDSServerTransID(),cReqRequestBuilder.build());
                     log.info("Initializing browser challenges");
-                    //return fetchLoginService.fetchLogin(cReq.getThreeDSServerTransID());
+                    return fetchLoginService.fetchLogin(cReq.getThreeDSServerTransID());
                 }
                 cReqRequestBuilder.threeDSServerTransID(cReq.getThreeDSServerTransID());
 
