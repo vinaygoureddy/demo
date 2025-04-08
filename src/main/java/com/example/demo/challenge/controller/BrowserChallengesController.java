@@ -41,16 +41,23 @@ public class BrowserChallengesController {
     public String browserChallenges(@RequestParam(required = false) String action, @RequestParam(required = false) String creq, @RequestParam(required = false) String challengeDataEntry, @RequestParam(required = false) String whitelistingDataEntry, @RequestParam(required = false) String trustListDataEntry, @RequestParam(required = false) String threeDSServerTransID, @RequestParam(required = false) String threeDSSessionData, @RequestParam(required = false) String deviceBindingDataEntry) {
         log.debug("Entered 'browserChallenges', action: {}, creq: {}, challengeDataEntry: {}, " + "threeDSServerTransID: {}, threeDSSessionData: {}, deviceBindingDataEntry: {}", action, creq, challengeDataEntry, threeDSServerTransID, threeDSSessionData, deviceBindingDataEntry);
 
-        if (StringUtils.isBlank(creq) && StringUtils.isBlank(action) && StringUtils.isNotBlank("threeDSServerTransID")) {
+        if (StringUtils.isBlank(creq) && StringUtils.isBlank(action) && StringUtils.isBlank("threeDSServerTransID")) {
             throw new InvalidDataElementException(MessageType.CREQ, "creq");
         }
+        CReqRequest cReqRequest= cache.getFromCache(threeDSServerTransID);
+        if(cReqRequest!=null) {
+            log.info("found matching cReqRequest: {}", cReqRequest);
+           return challengeService.doChallenge(cReqRequest);
+        }
+
         CReqRequest.CReqRequestBuilder cReqRequestBuilder = CReqRequest.builder().action(ChallengeAction.getByValue(action)).data(creq).challengeDataEntry(challengeDataEntry).whitelistingDataEntry(whitelistingDataEntry).trustListDataEntry(trustListDataEntry).threeDSServerTransID(threeDSServerTransID).threeDSSessionData(threeDSSessionData).deviceBindingDataEntry(deviceBindingDataEntry);
         if (StringUtils.isNotBlank(creq)) {
             try {
                 CReq cReq = jsonUtil.fromJson(new String(Base64.getDecoder().decode(creq)), CReq.class);
                 if(cache.getFromCache(cReq.getThreeDSServerTransID())==null){
                     //TODO: find a better way for this
-                    cache.addToCache(cReq.getThreeDSServerTransID(),cReq);
+                    cReqRequestBuilder.threeDSServerTransID(cReq.getThreeDSServerTransID());
+                    cache.addToCache(cReq.getThreeDSServerTransID(),cReqRequestBuilder.build());
                     log.info("Initializing browser challenges");
                     return fetchLoginService.fetchLogin(cReq.getThreeDSServerTransID());
                 }
@@ -61,6 +68,7 @@ public class BrowserChallengesController {
                 throw new TransientSystemException("Failed to decode/parse CReq", e, MessageType.CREQ);
             }
         }
+
 
         return challengeService.doChallenge(cReqRequestBuilder.build());
     }
