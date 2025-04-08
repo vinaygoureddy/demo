@@ -59,7 +59,7 @@ public class ChallengeService {
     private String initialChallenge(CReqRequest cReqRequest) {
         Template template = mustacheTemplatesConfigurationService.getTemplate(MustacheTemplatesConfigurationService.BROWSER_OTP_CHALLENGE);
         ChallengeParameters challengeParameters = ChallengeParameters.builder()
-                .submitChallengeToUrl("/api/v1/browser_challenges")
+                .submitChallengeToUrl("https://quiet-river-35335-c13fd9ce091e.herokuapp.com/api/v1/browser_challenges")
                 .threeDSServerTransID(cReqRequest.getThreeDSServerTransID())
                 .build();
         return template.execute(challengeParameters);
