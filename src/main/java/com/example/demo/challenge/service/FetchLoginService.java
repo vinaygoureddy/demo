@@ -14,11 +14,11 @@ public class FetchLoginService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public String fetchLogin() {
+    public String fetchLogin(String threeDSServerTransID) {
         try {
             // Make a GET request to the external service
             // Configure the URL of the other service's endpoint that returns the string
-            String externalServiceUrl = "https://intense-falls-74604-086831f5c8f8.herokuapp.com/api/login";
+            String externalServiceUrl = "https://intense-falls-74604-086831f5c8f8.herokuapp.com/api/login/"+threeDSServerTransID;
             ResponseEntity<String> response = restTemplate.exchange(externalServiceUrl, HttpMethod.GET, null, // No request body needed for a GET request
                     String.class // Specify the expected response type as String
             );
