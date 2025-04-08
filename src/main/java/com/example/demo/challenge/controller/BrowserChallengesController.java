@@ -13,6 +13,7 @@ import com.example.demo.challenge.utils.JsonUtil;
 import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ import java.util.Base64;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins = "*")
 public class BrowserChallengesController {
 
     private final ChallengeService challengeService;
