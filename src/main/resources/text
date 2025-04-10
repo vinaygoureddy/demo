@@ -122,3 +122,24 @@ class ConsentDetail {
     // Getters and Setters
 }
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Page on Load</title>
+    <script>
+        function openNewPage() {
+            // Replace "your_target_page.html" with the actual URL or path of the page you want to open
+            window.location.href ="https://stage.verify.mastercard.com/auth/passkeys?authSessionId=CPjFFdeNS4-KYG3-QwFNvw000000000010US&clientId=43c3630f-882c-4341-8868-0f73a5fd14d5&clientSessionId=53862b20-efa4-4a98-b716-a5207ef52ffe&locale=pt-BR&accessToken=eyJraWQiOiIyMDI0MDkwMjExMTAzOC1zdGctbWMtZGFzLWZlZHJhdGVkLXRva2VuLXNyYy1tYXN0ZXJjYXJkLWludCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJhdWQiOiJkaWdpdGFsYXV0aGVudGljYXRpb25zZXJ2aWNlIiwic3ViIjoiNjNkNGNiZWYtOGYwZC00NzRkLTk0ZTItN2IyY2ExZjg2ZjhmIiwibmJmIjoxNzQ0MzE5MTMwLCJpc3MiOiJodHRwczpcL1wvc3RhZ2UudmVyaWZ5Lm1hc3RlcmNhcmQuY29tIiwiZXhwIjoxNzQ0MzIwMDMwLCJpYXQiOjE3NDQzMTkxMzAsImNpZCI6IjYzZDRjYmVmLThmMGQtNDc0ZC05NGUyLTdiMmNhMWY4NmY4ZiJ9.PYX20lKPAZ7QTyo4YFEhSP4gUnCYKvrlu2kV8e6saIEEw_9yXrJBWLssLgTYGNz_s4nk8KM7zfLCFGzs5NLUamT41kKWOpH-ZgzUBtMGsevo8LYd2fUu-RspXNpt2XpgSWgwh1njfTMYVj7hZthxG0GQoC5WsqShgBD08Rjmo7z2nPtl5aB5tPQhB8Q-Z5Tjoou6P8FhYGRe_eAdByDdwu9K10blSz7yAfP7Xvnq1PX07jhkgYiKH6-VyTtQGe9_xYWBNafvfhoiZLYpNJUw3y8CdE2nWZVOqzf-uvWWADkIfFsMUl-4rAgsAZnTZCu21B_zirj7fAON0naM5ezoqA";
+            // Opens in the same window/tab
+            // Alternatively, to open in a new window/tab:
+            // window.open("your_target_page.html", "_blank");
+        }
+        // Call the openNewPage function when the page finishes loading
+        window.onload = openNewPage;
+    </script>
+</head>
+<body>
+</body>
+</html>
+
