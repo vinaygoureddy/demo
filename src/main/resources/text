@@ -15,3 +15,110 @@ https://stage.api.verify.mastercard.com/api/enrolments/sessions
 
 
 {"clientId":"43c3630f-882c-4341-8868-0f73a5fd14d5","clientSessionId":"53862b20-efa4-4a98-b716-a5207ef52ffe","accountReferences":[{"type":"ENCRYPTED_FPAN","value":"eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0.dzQKBvP-7kSQXyy8HtFxM3ttha_SY_6UGuxono3moDGEK_SCh2qfF0-RMku41gUEIWHU7-ox8whk5e61jtDyM-zCUtcBzYNLzT_5QaEU9su6QAOffgcA78UfNb-RASNAEM5Xz4K4m-0BX-oEvmYWhFhyaYs0mJiBP-MzTou98Xgwjp4e0Wu8AIr8O8Sy4U23YsBIi_9p35vO1UVR3eSp2UU9iD1hK-0EOX5YdNavmo_Q5D8b8AddUcvtM3qw2YFmUHAemQ3UX8gOBkvYoJmd8IJMchqEwamvEKsSDtPw9FjsraJoGSW_gE7WdK-V_-Q4MRCvLl_CIqmrzuQ4kOdMkQ.U5ld3afc_JGGXFqu.nfjc7AwkBSzDcaJEafp0vzJy4TZyx7VPVmp0UkJMil_6ML1Y.q_HTO_1rof1q5JO0","qualifiers":{"cardExpiry":{"expiryMonth":"03","expiryYear":"28"}},"presentationDescriptor":{"presentationType":"CARD","presentationProperties":{"cardLastFour":"7896","cardProductName":"Platinum Rewards Card","cardArtUrl":"https://sbx.assets.mastercard.com/card-art/combined-image-asset/6713d73d-a701-4bd2-bc9b-2e98940de9c7.png"}},"verificationStatus":{"status":"VERIFIED","verificationMethod":"AHI_VERIFIED","timestamp":"2024-10-17T09:44:29.032635Z"}},{"type":"ENCRYPTED_EMAIL_ADDRESS","value":"eyJraWQiOiIyMDI0MDMxMTIxMjMxMy1zdGctZGFzLXBheWxvYWQtZW5jcnlwdGlvbiIsImVuYyI6IkExMjhHQ00iLCJhbGciOiJSU0EtT0FFUC0yNTYifQ.pK_D3blmleXmCdWsrBzDQ12L2NduPAYS89XWTmEXew5u_3e6MEtzroAalsostLRS8j19nqJCFZ5S2KtgJznQE3BadpJqKHJLhPBvMVElv-iFXA_Ac7n5z_5jzcnKgM6_ZsWdcIzZXcQFXhg8YuJ-n1roPBt4--w4MBnLlds8ylGzdyTKIMepPTNivdPmRmeBD6Kz_CSj5ZPamkNKdJKWVl05FW2sv6twlL7SbWLoHmUrEn304FRZgHhgREz8JVOUE5OJEnPAsq1GNPrLPBadMydFHRqWkILWGqpzbepYreR7Y0Jc6Y3Dm01oPP4TlRLz5Xdtm8d2GzSRYXwLDDRe-w.O5jYal3nJqlsrHrP.uMqG-rT17zJ7UxaOi40.Z9MJc58ICsWSDb3gNA-ddw","presentationDescriptor":{"presentationProperties":{"cardLastFour":"4564","maskedEmailAddress":"dummy@mastercard.com"},"presentationType":"EMAIL_ADDRESS"},"verificationStatus":{"verificationMethod":"EMAIL_OTP","status":"VERIFIED"}}],"context":{"userData":{"userName":"DasDemoUser 2","displayName":"DasDemoUser 2"},"certifiedMfaMethodId":"20001","callbackUri":{"type":"WEB_URL","url":"https://das.dev.forge.mastercard.com/#/das-test-ui/authSimulator","otherParams":{}}},"compliance":{"consent":{"consents":[{"consentCategory":"PRIVACY_NOTICES","consentLanguageText":"PRIVACY_NOTICES","consentLanguageTextVersion":"1.0","locale":"pt-BR","legalContentVersion":"1.1","timeStamp":"2024-10-17T09:44:29.032635Z"},{"consentCategory":"TERMS_OF_USE","consentLanguageText":"TERMS_OF_USE","consentLanguageTextVersion":"1.0","locale":"pt-BR","legalContentVersion":"1.1","timeStamp":"2024-10-17T09:44:29.032635Z"}]}}}
+
+import java.util.List;
+import java.util.Map;
+
+public class ClientData {
+    private String clientId;
+    private String clientSessionId;
+    private List<AccountReference> accountReferences;
+    private Context context;
+    private Compliance compliance;
+
+    // Getters and Setters
+}
+
+class AccountReference {
+    private String type;
+    private String value;
+    private Qualifiers qualifiers;
+    private PresentationDescriptor presentationDescriptor;
+    private VerificationStatus verificationStatus;
+
+    // Getters and Setters
+}
+
+class Qualifiers {
+    private CardExpiry cardExpiry;
+
+    // Getters and Setters
+}
+
+class CardExpiry {
+    private String expiryMonth;
+    private String expiryYear;
+
+    // Getters and Setters
+}
+
+class PresentationDescriptor {
+    private String presentationType;
+    private PresentationProperties presentationProperties;
+
+    // Getters and Setters
+}
+
+class PresentationProperties {
+    private String cardLastFour;
+    private String cardProductName;
+    private String cardArtUrl;
+    private String maskedEmailAddress;
+
+    // Getters and Setters
+}
+
+class VerificationStatus {
+    private String status;
+    private String verificationMethod;
+    private String timestamp;
+
+    // Getters and Setters
+}
+
+class Context {
+    private UserData userData;
+    private String certifiedMfaMethodId;
+    private CallbackUri callbackUri;
+
+    // Getters and Setters
+}
+
+class UserData {
+    private String userName;
+    private String displayName;
+
+    // Getters and Setters
+}
+
+class CallbackUri {
+    private String type;
+    private String url;
+    private Map<String, String> otherParams;
+
+    // Getters and Setters
+}
+
+class Compliance {
+    private Consent consent;
+
+    // Getters and Setters
+}
+
+class Consent {
+    private List<ConsentDetail> consents;
+
+    // Getters and Setters
+}
+
+class ConsentDetail {
+    private String consentCategory;
+    private String consentLanguageText;
+    private String consentLanguageTextVersion;
+    private String locale;
+    private String legalContentVersion;
+    private String timeStamp;
+
+    // Getters and Setters
+}
+
