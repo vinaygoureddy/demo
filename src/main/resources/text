@@ -143,3 +143,28 @@ class ConsentDetail {
 </body>
 </html>
 
+
+
+  "compliance": {
+    "consent": {
+      "consents": [
+        {
+          "consentCategory": "PRIVACY_NOTICES",
+          "consentLanguageText": "PRIVACY_NOTICES",
+          "consentLanguageTextVersion": "1.0",
+          "locale": "en-AU",
+          "legalContentVersion": "1.0",
+          "timeStamp": "2024-10-17T09:44:29.032635Z"
+        },
+        {
+          "consentCategory": "TERMS_OF_USE",
+          "consentLanguageText": "TERMS_OF_USE",
+          "consentLanguageTextVersion": "1.0",
+          "locale": "en-AU",
+          "legalContentVersion": "1.0",
+          "timeStamp": "2024-10-17T09:44:29.032635Z"
+        }
+      ]
+    }
+  }
+
