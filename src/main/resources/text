@@ -167,7 +167,7 @@ class ConsentDetail {
       ]
     }
   }
-
+allowfullscreen="false" allowpaymentrequest="false" allow="payment *; publickey-credentials-create *" sandbox="allow-forms allow-scripts allow-same-origin allow-pointer-lock allow-popups" title="Child iFrame - Example Website"
 
   // final for closing response
 <script>
