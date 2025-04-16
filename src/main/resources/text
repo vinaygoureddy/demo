@@ -175,4 +175,6 @@ class ConsentDetail {
     window.parent.postMessage({"type":"threeds-challenge-notification","outcome":"succeeded"}, "https://qa-tp-app.mtp.msignia.com");
   });
 </script>
+--- CRes decoded
+{"acsTransID":"f18f52dc-e960-4b8c-ada1-1c7815f03361","messageType":"CRes","challengeCompletionInd":"Y","messageVersion":"2.2.0","transStatus":"Y","threeDSServerTransID":"6572e5a0-9380-4c7a-9555-5aae59d2fc99"}
 
