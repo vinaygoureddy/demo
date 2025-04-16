@@ -168,3 +168,11 @@ class ConsentDetail {
     }
   }
 
+
+  // final for closing response
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    window.parent.postMessage({"type":"threeds-challenge-notification","outcome":"succeeded"}, "https://qa-tp-app.mtp.msignia.com");
+  });
+</script>
+
