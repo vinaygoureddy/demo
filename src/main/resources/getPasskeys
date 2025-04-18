@@ -1,0 +1,24 @@
+async function checkPasskeyGet() {
+    try {
+        const options = {
+            publicKey: {
+                challenge: new Uint8Array([1, 2, 3, 4, 5]),
+                allowCredentials: [
+                    {
+                        type: 'public-key',
+                        id: new Uint8Array([6, 7, 8, 9, 0])
+                    }
+                ],
+                timeout: 60000,
+                userVerification: 'preferred'
+            }
+        };
+
+        const credential = await navigator.credentials.get(options);
+        console.log('navigator.credentials.get', credential);
+    } catch (error) {
+        console.error('Error from navigator.credentials.get ', error);
+    }
+}
+
+checkPasskeyGet();
