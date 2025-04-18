@@ -1,0 +1,24 @@
+Updated Information:
+ 
+Chrome
+Chrome-Authentication using Iframe 
+replace 'passkeys' with 'acs-tab'
+ https://stage.verify.mastercard.com/auth/acs-tab?authSessionId=_UmXfVgFQ4-7ZIKJz63zsg000000000010US&clientId=43c3630f-882c-4341-8868-0f73a5fd14d5&clientSessionId=53862b20-efa4-4a98-b716-a5207ef52ffe&locale=en-AU&accessToken=eyJraWQiOiIyMDI0MDk....
+ 
+Chrome-Registration using Iframe 
+replace 'passkeys' with 'acs-tab'
+append additional query param (&isNewTab=false&isRegistration=true)
+This will first launch Das UI in Iframe and then on button click it will start passkey registration
+https://stage.verify.mastercard.com/auth/acs-tab?authSessionId=QMt91gqURhuGNsncaP_2Hw000000000010US&clientId=43c3630f-882c-4341-8868-0f73a5fd14d5&clientSessionId=53862b20-efa4-4a98-b716-a5207ef52ffe&locale=en-AU&accessToken=eyJraWQiOiIyMDI0MDkwM.......ocTw&isNewTab=false&isRegistration=true
+Safari
+Safari-Authentication using new tab 
+replace 'passkeys' with 'acs-iframe'
+append additional query param (&isNewTab=true&isRegistration=false)
+This will first launch Das UI in Iframe and then on button click will open the new tab
+https://stage.verify.mastercard.com/auth/acs-iframe?authSessionId=QMt91gqURhuGNsncaP_2Hw000000000010US&clientId=43c3630f-882c-4341-8868-0f73a5fd14d5&clientSessionId=53862b20-efa4-4a98-b716-a5207ef52ffe&locale=en-AU&accessToken=eyJraWQiOiIyMDI0MDkwM.......ocTw&isNewTab=true&isRegistration=false
+ 
+Safari-Registration using new tab 
+replace 'passkeys' with 'acs-iframe'
+append additional query param (&isNewTab=true&isRegistration=true)
+This will first launch Das UI in Iframe and then on button click will open the new tab
+https://stage.verify.mastercard.com/auth/acs-iframe?authSessionId=QMt91gqURhuGNsncaP_2Hw000000000010US&clientId=43c3630f-882c-4341-8868-0f73a5fd14d5&clientSessionId=53862b20-efa4-4a98-b716-a5207ef52ffe&locale=en-AU&accessToken=eyJraWQiOiIyMDI0MDkwM.......ocTw&isNewTab=true&isRegistration=true
